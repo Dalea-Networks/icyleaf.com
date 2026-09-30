@@ -55,7 +55,7 @@ Benennung: `JAHR-MONAT-TAG-slug.md`
 `photo-mechanic.md` — erscheinen nicht im Build, ihre Bilder liegen aber
 bereits in `static/`.
 
-## Kategorie 2 — Bild-Assets · `static/` · 114 Dateien (nach Bereinigung)
+## Kategorie 2 — Bild-Assets · `static/` · 112 Dateien (nach Bereinigung)
 
 - `static/uploads/JAHR/MONAT/TAG/` — Artikelbilder nach Upload-Datum
 - `static/tutorials/how-to-homelab/` — Bilder der Homelab-Serie, nach Teilen sortiert
@@ -125,19 +125,33 @@ entfernt werden.
 
 ---
 
-## Zusätzlicher Befund: verwaiste Dateien ohne Duplikat
+## Verwaiste Dateien ohne Duplikat
 
-Diese Dateien werden von keinem Inhalt referenziert, sind aber **keine**
-Duplikate und wurden deshalb **nicht** verschoben:
+Zwei Dateien werden von keinem Inhalt referenziert, sind aber **keine**
+Duplikate — es gibt von ihnen keine zweite Kopie. Sie wurden auf
+ausdrücklichen Wunsch dennoch nach `Duplikate/` ausgelagert und sind damit
+**nur noch dort** vorhanden:
 
-- `static/images/cover.jpg` — ohne erkennbare Verwendung
-- `static/tutorials/how-to-homelab/proxmox/*` (8 Dateien) und
-  `static/tutorials/how-to-homelab/storages/nas-server.jpeg` — gehören
-  vermutlich zum unveröffentlichten Entwurf `content/draft/how-to-homelab-proxmox.md`
-  und werden gebraucht, sobald dieser erscheint
-- `static/tutorials/how-to-homelab/part-0/network-virtual-devices.png`
+| Verschoben | Vorher |
+|---|---|
+| `Duplikate/static/images/cover.jpg` | `static/images/cover.jpg` |
+| `Duplikate/static/tutorials/how-to-homelab/part-0/network-virtual-devices.png` | ebenda unter `static/` |
 
-Ob diese gelöscht oder eingebunden werden, ist eine inhaltliche Entscheidung.
+Geprüft wurde `content/` einschließlich der unveröffentlichten Entwürfe,
+`themes/`, `i18n/` und `config.yaml`. Für `cover.jpg` zusätzlich alle
+`image:`- und `cover:`-Angaben im Frontmatter aller Beiträge: die verwendeten
+Cover verweisen auf `/aboutme/`, `/uploads/` und `/gears/`, nie auf
+`/images/`. Das Theme bindet Cover über `.Params.image`, `.Params.cover.image`
+und Page-Resources ein — `static/images/cover.jpg` ist keine Page-Resource und
+wird von keinem dieser Wege erreicht.
+
+## Weiterhin im Repository: unreferenziert, aber gebraucht
+
+Die acht Dateien unter `static/tutorials/how-to-homelab/proxmox/` und
+`static/tutorials/how-to-homelab/storages/nas-server.jpeg` werden ebenfalls
+von keinem veröffentlichten Inhalt referenziert, gehören aber zum
+unveröffentlichten Entwurf `content/draft/how-to-homelab-proxmox.md`. Sie
+bleiben deshalb, wo sie sind.
 
 Die Website-Icons (Kategorie 3) erscheinen in keiner Inhaltsdatei, weil das
 Theme sie über feste Pfade einbindet. Sie sind in Benutzung.
